@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://t3b02-hj-club-sale.pages.dev/about.html</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://t3b02-hj-club-sale.pages.dev/blog.html</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://t3b02-hj-club-sale.pages.dev/feed.xml</loc>
-    <lastmod>2026-05-28</lastmod>
+    <loc>https://mqlwmsltm-arch.github.io/bp-t3b02-hj-club-sale/</loc>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://mqlwmsltm-arch.github.io/bp-t3b02-hj-club-sale/posts/checklist-002-li0dlx.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mqlwmsltm-arch.github.io/bp-t3b02-hj-club-sale/posts/guide-003.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mqlwmsltm-arch.github.io/bp-t3b02-hj-club-sale/posts/review-001.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mqlwmsltm-arch.github.io/bp-t3b02-hj-club-sale/posts/review-002.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mqlwmsltm-arch.github.io/bp-t3b02-hj-club-sale/feed.xml</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
