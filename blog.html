@@ -1,319 +1,56 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<!-- 합정 클럽 할인 블로그 페이지 -->
-<!DOCTYPE html>
-<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>합정 클럽 할인 데이터 분석 | T3B02 블로그</title>
-  <meta name="description" content="T3B02 데이터 기반 합정 클럽 할인 분석: 평일 할인율 20% vs 주말 얼리버드 15%. 2024년 4분기 예약 데이터로 검증한 최적의 예약 시간대와 VIP 패키지 효율성 비교. 공식 통계로 증명하는 합정 클럽 할인 전략.">
-  <meta name="keywords" content="합정 클럽 할인, 합정 클럽 데이터, 클럽 할인율 분석, T3B02 블로그, 합정 클럽 예약, 평일 클럽 할인, 주말 클럽 할인, VIP 할인, 클럽 얼리버드">
-  <meta name="author" content="T3B02">
-  <meta name="robots" content="index, follow">
-  <meta name="bpaas-design-system" content="brutalist-avantgarde">
-  <meta name="bpaas-design-theme" content="kr-neon-void">
-  <link rel="canonical" href="https://hapjeong-club-review.mapo-room-guide.xyz/blog.html">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="합정 클럽 할인 데이터 분석: 평일 20% vs 주말 15% — T3B02">
-  <meta property="og:description" content="1,247건의 예약 데이터를 기반으로 검증한 합정 클럽 할인 전략. 평일 테이블 예약의 실제 할인율과 VIP 패키지 효율을 분석합니다.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="bpaas-design-system" content="editorial-apple">
+    <meta name="bpaas-design-theme" content="kr-charcoal-silver">
+    <title>합정 클럽 할인 — 정산과 마무리의 기술적 검토</title>
+    <meta name="description" content="합정 클럽 할인 혜택을 단순히 가격 문제로 치부하지 마십시오. 정산 방식, 연장 정책, 기록의 남김이 당신의 밤을 결정합니다. 비교를 끝낸 당신을 위한 실전 가이드.">
+    <meta name="keywords" content="합정 클럽 할인, 클럽 이용 가이드, 합정 밤문화, 정산 방식, 클럽 예약">
+    <link rel="canonical" href="https://hapjeong-club-review.mapo-room-guide.xyz/blog.html">
+    <meta property="og:title" content="합정 클럽 할인 — 정산과 마무리의 기술적 검토">
+    <meta property="og:description" content="이미 여러 곳을 비교 중이라면, 이제 결론을 내릴 시간입니다. 마무리가 인상을 좌우합니다.">
   <meta property="og:url" content="https://hapjeong-club-review.mapo-room-guide.xyz/blog.html">
-  <meta property="og:image" content="https://t3b02-hj-club-sale.pages.dev/assets/og-blog-discount-analysis.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="합정 클럽 할인 데이터 분석 | T3B02">
-  <meta name="twitter:description" content="데이터 기반으로 검증한 최적의 합정 클럽 할인 전략. 평일 20% 할인, 주말 얼리버드 15% 할인 실효성 분석.">
-  <style>
-    :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #12121a;
-      --bg-card: #1a1a28;
-      --text-primary: #f0f0f5;
-      --text-secondary: #9898b0;
-      --accent-neon: #00ff88;
-      --accent-cyan: #00d4ff;
-      --border-brutal: #2a2a3a;
-      --hover-glow: rgba(0,255,136,0.15);
-      --font-mono: 'Courier New', monospace;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --spacing-unit: 8px;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      line-height: 1.7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a { color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 3px; }
-    a:hover { color: var(--accent-neon); }
-    hr { border: 0; border-top: 2px solid var(--border-brutal); margin: calc(var(--spacing-unit)*4) 0; }
-
-    /* 브루탈리스트 헤더 */
-    .brutal-header {
-      background: var(--bg-secondary);
-      border-bottom: 4px solid var(--accent-neon);
-      padding: calc(var(--spacing-unit)*3) calc(var(--spacing-unit)*4);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .brutal-header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .brutal-logo {
-      font-family: var(--font-mono);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent-neon);
-      text-decoration: none;
-      letter-spacing: -1px;
-    }
-    .brutal-logo:hover { color: var(--text-primary); }
-    .brutal-nav {
-      display: flex;
-      gap: calc(var(--spacing-unit)*3);
-      align-items: center;
-    }
-    .brutal-nav a {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-decoration: none;
-      padding: 6px 0;
-      border-bottom: 2px solid transparent;
-      transition: 0.2s;
-    }
-    .brutal-nav a:hover, .brutal-nav a.active {
-      color: var(--accent-neon);
-      border-bottom-color: var(--accent-neon);
-    }
-    /* 햄버거 메뉴 (기존 패턴 유지) */
-    .hamburger-menu {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      padding: 4px;
-    }
-    .hamburger-menu span {
-      display: block;
-      width: 28px;
-      height: 3px;
-      background: var(--accent-neon);
-      border-radius: 0;
-      transition: 0.3s;
-    }
-
-    /* 메인 콘텐츠 */
-    .main-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: calc(var(--spacing-unit)*6) calc(var(--spacing-unit)*4);
-      flex: 1;
-      width: 100%;
-    }
-    .article-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: calc(var(--spacing-unit)*6);
-    }
-    @media (max-width: 768px) {
-      .article-grid { grid-template-columns: 1fr; }
-      .brutal-nav { display: none; }
-      .hamburger-menu { display: flex; }
-      .brutal-nav.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-secondary);
-        padding: calc(var(--spacing-unit)*4);
-        border-bottom: 4px solid var(--accent-neon);
-        gap: calc(var(--spacing-unit)*2);
-      }
-    }
-
-    /* 블로그 아티클 */
-    .blog-article h1 {
-      font-family: var(--font-mono);
-      font-size: 2.2rem;
-      line-height: 1.2;
-      margin-bottom: calc(var(--spacing-unit)*3);
-      color: var(--accent-neon);
-      text-transform: uppercase;
-      letter-spacing: -0.5px;
-      border-left: 6px solid var(--accent-cyan);
-      padding-left: calc(var(--spacing-unit)*3);
-    }
-    .blog-article .meta-line {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: calc(var(--spacing-unit)*5);
-      display: flex;
-      gap: calc(var(--spacing-unit)*3);
-      font-family: var(--font-mono);
-      text-transform: uppercase;
-    }
-    .blog-article .meta-line span { color: var(--accent-cyan); }
-    .blog-article h2 {
-      font-family: var(--font-mono);
-      font-size: 1.4rem;
-      margin-top: calc(var(--spacing-unit)*6);
-      margin-bottom: calc(var(--spacing-unit)*3);
-      color: var(--text-primary);
-      border-bottom: 2px solid var(--border-brutal);
-      padding-bottom: calc(var(--spacing-unit)*1);
-    }
-    .blog-article p {
-      margin-bottom: calc(var(--spacing-unit)*3);
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-    .blog-article strong { color: var(--accent-neon); }
-    .blog-article ul, .blog-article ol {
-      margin-left: calc(var(--spacing-unit)*4);
-      margin-bottom: calc(var(--spacing-unit)*4);
-      color: var(--text-secondary);
-    }
-    .blog-article li { margin-bottom: calc(var(--spacing-unit)*1.5); }
-    .blog-article .data-block {
-      background: var(--bg-card);
-      border-left: 6px solid var(--accent-neon);
-      padding: calc(var(--spacing-unit)*4);
-      margin: calc(var(--spacing-unit)*4) 0;
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-    }
-    .blog-article .data-block .number { color: var(--accent-cyan); font-size: 1.8rem; font-weight: 700; display: block; }
-    .blog-article .data-block .label { color: var(--text-secondary); }
-
-    /* 사이드바 */
-    .sidebar {
-      border-left: 2px solid var(--border-brutal);
-      padding-left: calc(var(--spacing-unit)*4);
-    }
-    .sidebar-card {
-      background: var(--bg-card);
-      padding: calc(var(--spacing-unit)*4);
-      margin-bottom: calc(var(--spacing-unit)*4);
-      border: 1px solid var(--border-brutal);
-    }
-    .sidebar-card h3 {
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      color: var(--accent-neon);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: calc(var(--spacing-unit)*2);
-    }
-    .sidebar-card p { font-size: 0.85rem; color: var(--text-secondary); }
-    .cta-button {
-      display: inline-block;
-      background: transparent;
-      border: 2px solid var(--accent-neon);
-      color: var(--accent-neon);
-      padding: calc(var(--spacing-unit)*2) calc(var(--spacing-unit)*5);
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: 0.2s;
-      cursor: pointer;
-      margin-top: calc(var(--spacing-unit)*2);
-    }
-    .cta-button:hover {
-      background: var(--accent-neon);
-      color: var(--bg-primary);
-    }
-
-    /* FAQ 블록 */
-    .faq-block {
-      margin-top: calc(var(--spacing-unit)*8);
-      border-top: 4px solid var(--border-brutal);
-      padding-top: calc(var(--spacing-unit)*6);
-    }
-    .faq-block h2 {
-      font-family: var(--font-mono);
-      font-size: 1.6rem;
-      color: var(--accent-cyan);
-      margin-bottom: calc(var(--spacing-unit)*5);
-      text-transform: uppercase;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--border-brutal);
-      padding: calc(var(--spacing-unit)*3) 0;
-    }
-    .faq-item h3 {
-      font-family: var(--font-mono);
-      font-size: 1rem;
-      color: var(--text-primary);
-      margin-bottom: calc(var(--spacing-unit)*1);
-    }
-    .faq-item p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    /* 푸터 */
-    .brutal-footer {
-      border-top: 4px solid var(--accent-neon);
-      background: var(--bg-secondary);
-      padding: calc(var(--spacing-unit)*4) ;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      font-family: var(--font-mono);
-    }
-    .brutal-footer a { color: var(--accent-cyan); }
-  </style>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
-<body>
-  <header class="brutal-header">
-    <div class="brutal-header-inner">
-      <a href="/" class="brutal-logo">T3B02</a>
-      <nav class="brutal-nav" id="mainNav">
-        <a href="/">Home</a>
-        <a href="/blog/" class="active">Blog</a>
-        <a href="/reservation/">Reservation</a>
-        <a href="/vip/">VIP</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-      <div class="hamburger-menu" onclick="document.getElementById('mainNav').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </header>
+<body class="x-body-dzma">
+    <header class="n-top-mnde">
+        <nav>
+            <a href="/">홈</a>
+            <a href="/guide">이용 가이드</a>
+            <a href="/blog">블로그</a>
+        </nav>
+    </header>
 
-  <main class="main-container">
-    <div class="article-grid">
-      <article class="blog-article">
-        <h1>합정 클럽 할인 데이터 분석: 평일 20% vs 주말 15% — 1,247건 예약 기반 검증</h1>
-        <div class="meta-line">
-          <span>Published: 2024-12-10</span>
-          <span>Data Source: T3B02 Reservation System</span>
-          <span>Reading Time: 7 min</span>
-        </div>
+    <main>
+        <section class="t-wrap-v57c">
+            <h1 class="t-txt-yd26">할인은 '얼마'가 아니라 '어떻게'의 문제다</h1>
+            <p>합정 지역에서 클럽을 찾는 이들이 가장 먼저 묻는 것은 가격표입니다. 하지만 1~2만 원의 할인을 쫓다가 정작 중요한 '밤의 질'을 놓치고 있다는 사실을 아는 사람은 드뭅니다. 할인이란 단순히 비용을 깎는 행위가 아니라, 당신이 지불한 가치를 온전히 보존하기 위한 전략적 선택이어야 합니다.</p>
+            <p>우리는 흔히 싼 곳을 찾다가 서비스의 질을 포기하거나, 정산 과정에서 발생하는 불투명한 추가 비용에 당황하곤 합니다. 합정 클럽씬에서 진정한 할인은 투명한 정산 체계와 명확한 추가 서비스 보장에서 시작됩니다. 비용에 집착하지 말고, 시스템에 집중하십시오.</p>
+        </section>
 
-        <p><strong>핵심 요약:</strong> 2024년 3분기부터 4분기까지 수집된 1,247건의 합정 클럽 예약 데이터를 분석한 결과, 평일 20% 할인 패키지는 주말 얼리버드 15% 할인 대비 실제 객단가 절감액이 2.3배 높은 것으로 나타났다. 단, 테이블 최소 금액 조건이 있는 VIP 패키지의 경우 오후 8시 이전 예약 시 실질 할인율이 18.7%까지 상승한다.</p>
+        <section class="k-side-ciy4">
+            <h2 class="r-txt-kbry">정산 방식의 투명성: 속지 않는 기술</h2>
+            <p>첫 번째로 확인해야 할 것은 '선불과 후불의 경계'입니다. 일부 업소는 할인을 미끼로 현장 결제를 유도한 뒤, 교묘하게 추가 항목을 덧붙입니다. 예약 시점과 실제 입장 시점의 금액이 일치하는지, 부가세나 서비스 비용이 별도로 책정되어 있는지 반드시 문서화된 가이드를 요청하십시오.</p>
+            <p>두 번째는 정산의 타이밍입니다. 밤이 깊어질수록 판단력은 흐려집니다. 정산은 반드시 입구에서 입장과 동시에 마무리하는 것이 가장 안전합니다. 추가 연장이나 테이블 이동이 발생할 경우, 그 즉시 금액을 확인받는 습관이 당신의 지갑을 보호합니다. 기록되지 않은 구두 약속은 합정의 밤에서 가장 위험한 요소입니다.</p>
+        </section>
 
-        <h2>1. 분석 개요 및 방법론</h2>
-        <p>본 분석은 2024년 7월 1일부터 11월 30일까지 T3B02 플랫폼을 통해 예약된 합정 지역 5개 클럽(Club V, Siren, Bass Station, The Vault, Lumen)의 예약 데이터를 기반으로 한다. 총 1,247건의 예약 중 평일(월~목) 734건, 주말(금~일) 513건을 대상으로 객단가, 할인율, 추가 소비 금액을 표본 추출했다. 모든 데이터는 익명화 처리되었으며, 통계적 유의성은 95% 신뢰수준에서 검증되었다.</p>
+        <section class="t-wrap-v57c">
+            <h3 class="t-txt-yd26">상황별 할인 전략: 인원과 시점의 최적화</h3>
+            <p>인원이 많을수록 '패키지 할인'의 함정에 빠지기 쉽습니다. 단순히 머릿수를 나누어 계산하지 마십시오. 주류 구성과 안주, 그리고 테이블 위치에 따른 차등 할인을 확인해야 합니다. 4인 이상이라면 개별 입장료보다 테이블 세트 구성을 문의하는 것이 실질적인 할인율을 높이는 길입니다.</p>
+            <p>방문 시점 또한 전략적이어야 합니다. 소위 '골든타임'이라 불리는 피크 시간대에는 할인이 거의 적용되지 않거나 서비스 질이 저하됩니다. 차라리 오픈 직후의 얼리버드 혜택이나, 평일 특정 시간대의 멤버십 할인을 활용하는 것이 훨씬 효율적입니다. 당신이 클럽에 가는 목적이 '분위기'라면, 조금 일찍 시작하고 일찍 자리를 뜨는 것이 금전적으로나 체력적으로나 가장 우아한 선택입니다.</p>
+        </section>
 
-        <div class="data-block">
-          <span class
+        <section class="k-side-ciy4">
+            <h2 class="r-txt-kbry">기록의 남김: 마무리의 기술</h2>
+            <p>모든 할인은 기록으로 증명되어야 합니다. 모바일 예약 메시지, 혹은 담당자와의 텍스트 대화 내용은 곧 계약서입니다. 계산서가 당신의 예상과 다를 때, 가장 강력한 무기는 당당하게 제시할 수 있는 기록입니다. 현장에서 당황하지 않으려면 예약 단계에서부터 '할인 적용 항목'을 구체적으로 명시해달라고 요구하십시오.</p>
+            <p>결국 마무리가 깔끔해야 그 밤이 온전히 기억에 남습니다. 정산 분쟁으로 밤을 망치고 싶지 않다면, 지금 당장 합정 클럽의 할인 정책을 가격이 아닌 '시스템의 신뢰도' 관점에서 다시 검토하십시오. 당신의 가치 있는 밤을 위해, 그 정도의 깐깐함은 필수입니다.</p>
+        </section>
+    </main>
+
+    <footer class="n-top-mnde">
+        <button class="q-btn-wptd">추가 상담 문의</button>
+        <p>© 2024 합정 클럽 가이드. 모든 권리 보유.</p>
+    </footer>
 </body>
 </html>
